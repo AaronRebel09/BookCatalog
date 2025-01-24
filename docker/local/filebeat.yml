@@ -1,0 +1,20 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/your_service/*.log
+
+output.kafka:
+  hosts: ["kafka:9092"]
+  topic: "<KAFKA_TOPIC>"
+  codec.json:
+    pretty: false
+
+setup.kibana:
+  host: "kibana:5601"
+
+setup.template.settings:
+  index.number_of_shards: 1
+  index.codec: best_compression
+
+setup.dashboards.enabled: true
